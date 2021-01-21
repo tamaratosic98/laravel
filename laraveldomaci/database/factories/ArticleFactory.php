@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Article;
+use Faker\Generator as Faker;
 
 class ArticleFactory extends Factory
 {
@@ -12,7 +14,7 @@ class ArticleFactory extends Factory
      *
      * @var string
      */
-    protected $model = \App\Models\Article::class;
+    protected $model = Article::class;
 
     /**
      * Define the model's default state.
@@ -23,8 +25,8 @@ class ArticleFactory extends Factory
     {
         return [
             //
-            'title'=>$this->faker->text(50),
-            'body'=>$this->faker->text(200)
+            'title' => $this->faker->text(50),
+            'body' => $this->faker->text(200)
         ];
     }
 }
