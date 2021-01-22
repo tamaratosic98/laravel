@@ -5,14 +5,14 @@ namespace Database\Factories;
 use App\Models\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ArticleFactory extends Factory
+class CityFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = \App\Models\Article::class;
+    protected $model = \App\Models\City::class;
 
     /**
      * Define the model's default state.
@@ -23,10 +23,9 @@ class ArticleFactory extends Factory
     {
         return [
             //
-            'title' => $this->faker->text(50),
-            'body' => $this->faker->text(200),
-            //'city_id' => 'factory:App\Models\City'
-          
+            'name' => $this->faker->city,
+            'population' => $this->faker->numberBetween($min=100,$max=10000000)
+
         ];
     }
 }
