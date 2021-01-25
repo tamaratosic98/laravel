@@ -14,6 +14,12 @@
         <li class="nav-item">
           <a class="nav-link" href="http://localhost:8080/laravel_domaci/laravel/public/about">About us</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost:8080/laravel_domaci/laravel/public/articles">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost:8080/laravel_domaci/laravel/public/articles/create">Add Article</a>
+        </li>
       </ul>
      
     </div>

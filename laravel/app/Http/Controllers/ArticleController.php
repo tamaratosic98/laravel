@@ -13,6 +13,8 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //funkcije za api
     public function index()
     {
         //
@@ -68,4 +70,7 @@ class ArticleController extends Controller
         }
 
     }
+    
+
+  
 }
