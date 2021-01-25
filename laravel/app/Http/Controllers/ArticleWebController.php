@@ -80,6 +80,9 @@ class ArticleWebController extends Controller
     public function edit($id)
     {
         //
+        $cities = DB::table('cities')->pluck('name', 'id','population');
+        $article= Article::find($id);
+        return view('articles.edit')->with('article',$article)->with('cities',$cities);
     }
 
     /**
@@ -92,6 +95,19 @@ class ArticleWebController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'title'=>'required',
+            'body'=>'required',
+            'cities'=>'required',
+           
+        ]);
+        $article=Article::find($id);
+        //$article->user_id=auth()->user()->id;//uzima current usera i cuva ga tako
+        $article->title=$request->input('title');
+        $article->body=$request->input('body');
+        $article->city_id=$request->input('cities');
+        $article->save();
+        return redirect('/articles')->with('success','Article Updated');
     }
 
     /**
@@ -103,5 +119,8 @@ class ArticleWebController extends Controller
     public function destroy($id)
     {
         //
+        $article=Article::find($id);
+        $article->delete();
+        return redirect('/articles')->with('success','Article Removed');
     }
 }
