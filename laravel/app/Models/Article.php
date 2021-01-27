@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\City;
+use App\Models\User;
 
 class Article extends Model
 {
@@ -12,6 +13,9 @@ class Article extends Model
     use HasFactory;
     public function city(){
         return $this->hasOne(City::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
    
 }

@@ -22,3 +22,7 @@ Route::get('/about', [PagesController::class,'about']);
 
 Route::resource('articles',ArticleWebController::class);//kreira web rute za sve articles
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

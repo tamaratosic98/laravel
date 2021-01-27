@@ -17,13 +17,18 @@
                         ?>
                     </div>
                     <hr style="background-color:white">
-                    <small>Written on {{$article->created_at}}</small>
+                    <small>Written on {{$article->created_at}} by {{$article->user->name}}</small>
+
                     <br>
-                    <a href="http://localhost:8080/laravel_domaci/laravel/public/articles/{{$article->id}}/edit" class="btn btn-success">Edit</a>
-                    {!!Form::open(['action'=>['App\Http\Controllers\ArticleWebController@destroy', $article->id],'method'=>'POST','class'=>'pull-right']) !!}
-                    {{Form::hidden('_method','DELETE')}}
-                    {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                    {!!Form::close()!!}
+                    @if(!Auth::guest())
+                        @if(Auth::user()->id==$article->user_id)
+                            <a href="http://localhost:8080/laravel_domaci/laravel/public/articles/{{$article->id}}/edit" class="btn btn-success">Edit</a>
+                            {!!Form::open(['action'=>['App\Http\Controllers\ArticleWebController@destroy', $article->id],'method'=>'POST','class'=>'pull-right']) !!}
+                            {{Form::hidden('_method','DELETE')}}
+                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
+                            {!!Form::close()!!}
+                        @endif
+                    @endif
                 </div>               
             </div>
 @endsection

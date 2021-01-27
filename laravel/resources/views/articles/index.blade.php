@@ -13,13 +13,13 @@
                          echo 'City to visit: '.$city->name;
                         ?>
                     </div>
-                    <small>Written on {{$article->created_at}}</small>
+                    <small>Written on {{$article->created_at}} by {{$article->user->name}}</small>
                 </div>               
             </div>
         @endforeach
         {{$articles->links()}}
        
-    @else <p>No articles found.</p>
+    @else <p>No articles found. </p>
 
     @endif
 @endsection

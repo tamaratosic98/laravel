@@ -8,6 +8,17 @@ use DB;
 
 class ArticleWebController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth',['except'=>['index','show']]);//ovo sakriva bilo kakav vid post-a kada niko nije ulogovan
+        //dozvolili smo da se prikazuje samo blog i pojedinacan article
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +60,7 @@ class ArticleWebController extends Controller
            
         ]);
         $article=new Article;
-        //$article->user_id=auth()->user()->id;//uzima current usera i cuva ga tako
+        $article->user_id=auth()->user()->id;//uzima current usera i cuva ga tako
         $article->title=$request->input('title');
         $article->body=$request->input('body');
         $article->city_id=$request->input('cities');
@@ -82,6 +93,9 @@ class ArticleWebController extends Controller
         //
         $cities = DB::table('cities')->pluck('name', 'id','population');
         $article= Article::find($id);
+        if(auth()->user()->id !== $article->user_id){
+            return redirect('/articles')->with('error',"Unauthorizes page.");
+        }
         return view('articles.edit')->with('article',$article)->with('cities',$cities);
     }
 

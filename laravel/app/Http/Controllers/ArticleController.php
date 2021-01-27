@@ -33,6 +33,7 @@ class ArticleController extends Controller
     {
         //for creating and updating
         $article=$request->isMethod('put')? Article::findOrFail($request->article_id):new Article;
+        $article->user_id=auth()->user()->id;
         $article->id=$request->input('article_id');
         $article->title=$request->input('title');
         $article->body=$request->input('body');
